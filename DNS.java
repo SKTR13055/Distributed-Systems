@@ -1,53 +1,44 @@
-import java.net.*;
 import java.util.*;
 import java.io.*;
+import java.net.*;
 
-  public class DNS 
-  {
-    public static void main(String[]args)
-    {
-      int n;
-      BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-         do
-         {
-            System.out.println("\nMenu\n1.DNS 2.Reverse DNS 3.Exit");
-            System.out.println("Enter your choice");
-            n = Integer.parseInt(System.console().readLine());
-            
-            if(n==1)
-            {
-               try
-               {
-                  System.out.println("Enter hostname :");
-                  String hname = in.readLine();
-                  InetAddress address;
-                  address = InetAddress.getByName(hname);
-                  System.out.println("Host Name: " +address.getHostName());
-                  System.out.println("Ip: " +address.getHostAddress());
-               }
-               catch(IOException ioe)
-               {
-                  ioe.printStackTrace();
-               }
+public class DNS
+{
+     public static void main(String[]args)
+     {
+        int n;
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));      
+        do
+        {
+             System.out.println("\n Menu 1.DNS, 2.Reverse DNS, 3.Exit");
+             System.out.println("Enter your choice");
+             n = Integer.parseInt(System.console().readLine());
+             try
+             {
+                if(n == 1)
+                {
+                    System.out.println("Enter the Hostname");
+                    String hname = in.readLine();
+                    InetAddress address;
+                    address = InetAddress.getByName(hname);
+                    System.out.println("Hostname" +address.getHostName());
+                    System.out.println("IP" +address.getHostAddress());
+                }
+                if(n == 2)
+                {
+                     System.out.println("Enter Ip Address");
+                     String ipstr = in.readLine();
+                     InetAddress ia = InetAddress.getByName(ipstr);
+                     System.out.println("IP" +ipstr);
+                     System.out.println("HostName" +ia.getHostName());
 
-            }
-            if(n==2)
-            {
-               try
-               {
-                   System.out.println("Enter Ip :");
-                   String ipstr = in.readLine();
-                   InetAddress ia = InetAddress.getByName(ipstr);
-                   System.out.println("Ip "+ipstr);
-                   System.out.println("Host Name" +ia.getHostName());
-               }
-               catch(IOException ioe)
-               {
-                  ioe.printStackTrace();
-               }
-            }
-         }
-         while(!(n==3));
-    }
- }
-  
+                }
+             }
+             catch(IOException ioe)
+             { 
+                 ioe.printStackTrace();
+             }          
+        }
+        while(n != 3);
+     }
+}
